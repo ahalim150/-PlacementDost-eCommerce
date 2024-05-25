@@ -9,6 +9,7 @@ import Brands from './Components/Brands/Brands'
 import Cart from './Components/Cart/Cart'
 import Orders from './Components/Orders/Orders'
 import NotFound from './Components/NotFound/NotFound'
+import AuthContextProvider from './Context/AuthContext'
 import './App.css'
 
 function App() {
@@ -30,7 +31,9 @@ function App() {
 
 return (
   <>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthContextProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthContextProvider>
   </>
 )
 }

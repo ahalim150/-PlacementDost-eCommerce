@@ -1,12 +1,13 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { AuthContext } from '../../Context/AuthContext'
 
 export default function Login() {
 
+  const {isLogIn, setIsLogIn} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
@@ -31,6 +32,8 @@ export default function Login() {
 
     axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', formik.values)
     .then((response)=> {
+      localStorage.setItem("token", response.data.token)
+      setIsLogIn(true)
       setIsLoading(false)
       navigate('/')
     }).catch((err)=> {

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext, Fragment } from 'react'
 import { classNames } from '../../assets/Helpers/strings'
 import logo from '../../assets/Images/freshcart-logo.svg'
-import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/AuthContext'
 
 const navigation = [
   { name: 'Home', href: ''},
@@ -16,6 +16,16 @@ const navigation = [
 ]
 
 export default function Navbar() {
+
+  const {isLogIn, setIsLogIn} = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  function logOut(){
+    setIsLogIn(false);
+    navigate("/login");
+    localStorage.removeItem("token");
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-100">
     {({ open }) => (
@@ -44,7 +54,7 @@ export default function Navbar() {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {navigation.map((item) => (
+                  {isLogIn && navigation.map((item) => (
                     <NavLink
                       key={item.name}
                       to={item.href}
@@ -61,6 +71,7 @@ export default function Navbar() {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               
+            {isLogIn || <>
             <NavLink
                to='login'
                className={classNames(
@@ -80,8 +91,10 @@ export default function Navbar() {
              >
                Register
              </NavLink>
+            </> }
 
-              <button
+            {isLogIn && <>
+            <button
                 type="button"
                 className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               >
@@ -135,17 +148,17 @@ export default function Navbar() {
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                        <button onClick={logOut}
+                          className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-full text-start')}
                         >
                           Sign out
-                        </a>
+                        </button>
                       )}
                     </Menu.Item>
                   </Menu.Items>
                 </Transition>
               </Menu>
+            </> }
             </div>
           </div>
         </div>
