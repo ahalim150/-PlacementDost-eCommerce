@@ -35,7 +35,11 @@ export default function Login() {
       localStorage.setItem("token", response.data.token)
       setIsLogIn(true)
       setIsLoading(false)
-      navigate('/')
+      if(location.pathname == '/login'){
+        navigate('/')
+      }else{
+        navigate(Location.pathname)
+      }
     }).catch((err)=> {
       setIsLoading(false)
       setErrMsg(err.response.data.message)

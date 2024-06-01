@@ -8,6 +8,14 @@ export default function AuthContextProvider({ children }){
     const [isLogIn, setIsLogIn] = useState(false);
 
     useEffect(()=>{
+        try {
+            jwtDecode(localStorage.getItem("token"));
+            setIsLogIn(true);
+        } catch (error) {
+            setIsLogIn(false);
+            localStorage.removeItem("token");
+        }
+        
         window.addEventListener("storage", ()=>{
             try {
                 jwtDecode(localStorage.getItem("token"));
