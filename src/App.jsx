@@ -14,6 +14,13 @@ import ProtectedRoute from './Gaurds/ProtectedRoute/ProtectedRoute'
 import AuthProtectedRoute from './Gaurds/AuthProtectedRoute/AuthProtectedRoute'
 import './App.css'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import CartContextProvider from './Context/CartContext'
+import CartAddress from './Components/CartAddress/CartAddress'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 
 function App() {
 
@@ -27,17 +34,26 @@ function App() {
         {path: 'categories', element: <ProtectedRoute> <Categories/> </ProtectedRoute>},
         {path: 'brands', element: <ProtectedRoute> <Brands/> </ProtectedRoute>} ,
         {path: 'cart', element: <ProtectedRoute> <Cart/> </ProtectedRoute>},
-        {path: 'orders', element: <ProtectedRoute> <Orders/> </ProtectedRoute>},
+        {path: 'allorders', element: <ProtectedRoute> <Orders/> </ProtectedRoute>},
+        {path: 'cartaddress/:cartId', element: <ProtectedRoute> <CartAddress/> </ProtectedRoute>},
         {path: 'ProductDetails/:id/:categoryId', element: <ProtectedRoute> <ProductDetails/> </ProtectedRoute>},
         {path: '*', element: <NotFound />}
     ]}
 ])
 
+let queryClient = new QueryClient();
+
 return (
   <>
-    <AuthContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <CartContextProvider>
+          <RouterProvider router={router}></RouterProvider>
+          <ToastContainer />
+        </CartContextProvider>
+      </AuthContextProvider>
+    <ReactQueryDevtools/>
+    </QueryClientProvider>
   </>
 )
 }

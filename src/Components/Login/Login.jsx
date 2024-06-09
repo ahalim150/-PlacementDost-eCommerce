@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { AuthContext } from '../../Context/AuthContext'
+import { Helmet } from 'react-helmet'
+import Bubbles from '../Bubbles/Bubbles'
 
 export default function Login() {
 
@@ -48,6 +50,12 @@ export default function Login() {
 
   return (
     <>
+        <Helmet>
+            <title>FreshCart - Login</title>
+        </Helmet>
+
+        <Bubbles />
+
       <div className="bg-slate-100 p-5 rounded-md">
         <h1 className='text-2xl mb-7'>Login Now</h1>
         
@@ -65,9 +73,12 @@ export default function Login() {
             {errMsg && <div className="mb-2">
             <p className='bg-red-400 text-white text-sm p-1 rounded-md my-1'>{errMsg}</p>
             </div>}
-            <button disabled={isLoading} type="submit" className="mt-4 text-white ms-auto block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <div className='flex'>
+              <h1>Don't have an account? <Link className='text-blue-700' to={'/register'}>Register Now</Link></h1>
+              <button disabled={isLoading} type="submit" className="mt-4 text-white ms-auto block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
               {isLoading ? <i className='fa fa-spinner fa-spin mx-4'></i> : <span>Login</span>}
             </button>
+            </div>
         </form>
       </div>
     </>

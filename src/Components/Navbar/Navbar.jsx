@@ -3,22 +3,24 @@ import { classNames } from '../../assets/Helpers/strings'
 import logo from '../../assets/Images/freshcart-logo.svg'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthContext'
+import { cartContext } from '../../Context/CartContext'
 
 const navigation = [
   { name: 'Home', href: ''},
   { name: 'Products', href: 'products'},
   { name: 'Categories', href: 'categories'},
   { name: 'Brands', href: 'brands'},
-  { name: 'Orders', href: 'orders'},
-  { name: 'Cart', href: 'cart'},
+  { name: 'Orders', href: 'allorders'},
+  // { name: 'Cart', href: 'cart'},
 ]
 
 export default function Navbar() {
-
   const {isLogIn, setIsLogIn} = useContext(AuthContext);
   const navigate = useNavigate()
+
+  let { cartCount } = useContext(cartContext);
 
   function logOut(){
     setIsLogIn(false);
@@ -94,14 +96,17 @@ export default function Navbar() {
             </> }
 
             {isLogIn && <>
-            <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon className="h-6 w-6" aria-hidden="true" />
+            <Link to={'cart'}>
+              <button
+                  type="button"
+                  className="relative flex rounded-full bg-gray-800 p-1  text-[#0AAD0A] focus:outline-none focus:ring-2 focus:ring-[#0AAD0A] focus:ring-offset-2 focus:ring-offset-white-800"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
+                <span className=' text-white'>{ cartCount }</span>
               </button>
+            </Link>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">

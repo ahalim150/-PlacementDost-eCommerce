@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { Helmet } from 'react-helmet'
+import Bubbles from '../Bubbles/Bubbles'
 
 export default function Register() {
 
@@ -47,6 +49,12 @@ export default function Register() {
 
   return (
     <>
+      <Helmet>
+          <title>FreshCart - Register</title>
+      </Helmet>
+
+      <Bubbles />
+
       <div className="bg-slate-100 p-5 rounded-md">
         <h1 className='text-2xl mb-7'>Register Now</h1>
         

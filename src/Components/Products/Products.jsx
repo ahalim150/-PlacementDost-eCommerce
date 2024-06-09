@@ -1,19 +1,41 @@
+import axios from 'axios'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import Loading from '../Loading/Loading'
+import Product from '../Product/Product';
+import { Helmet } from 'react-helmet';
+import Bubbles from '../Bubbles/Bubbles';
 
-export default function Products({ product }) {
+export default function Products() {
+
+    function getProducts(){
+        return axios.get("https://ecommerce.routemisr.com/api/v1/products");
+    }
+
+    let {data, isLoading, isFetching, isFetched, isStale, refetch} = useQuery('products', getProducts, {
+        cacheTime: 5000,
+        staleTime: 10000,
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        
+    });
+
   return (
-      <Link to={"/ProductDetails/"+ product._id + "/" + product.category._id}>
-          <div className="p-3">
-                <img src={product.imageCover} alt="" className='w-full'/>
-                <h5 className='font-light text-green-400'>{product.category.name}</h5>
-                <h4 className='font-bold'>{product.title.split(" ").slice(0, 2).join(" ")}</h4>
-                <div className="flex justify-between">
-                    <h6 className=''>{product.price} $</h6>
-                    <h6><i className='fas fa-star text-yellow-400'></i> {product.ratingsAverage}</h6>
-                </div>
-                <button className='mt-3 w-full text-center bg-cyan-500 rounded text-white p-2 hover:bg-cyan-700'>Add to Cart</button>
-          </div>
-      </Link>
+    <>
+        <Helmet>
+            <title>FreshCart - Products</title>
+        </Helmet>
+
+        <Bubbles />
+
+        {/* <button onClick={refetch} className='text-white bg-green-500 px-2 rounded-md py-1'>Refresh</button> */}
+        {
+        isLoading ? <Loading/> : <div className="grid grid-cols-6">
+        {data?.data.data.map((product, index)=>{
+            return <Product product={product} key={index} />
+        })}
+        </div>
+        }
+    </>
   )
 }

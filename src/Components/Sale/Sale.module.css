@@ -1,0 +1,56 @@
+.buy-now {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  background-color: #729C29;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 0px 0px #7CB442;
+  animation: bubble 1s infinite linear;
+}
+.buy-now__link {
+  color: #ffffff;
+  position: relative;
+}
+.buy-large {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.buy-large__s {
+  align-self: start;
+}
+.buy-large__num {
+  font-size: 29px;
+  font-weight: 700;
+}
+.buy-icon {
+  position: absolute;
+  right: -90%;
+  top: 60%;
+  background-color: #7CB442;
+  background-image: url(../../assets/Images/download.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes bubble {
+  0% {
+    box-shadow: 0px 0px 0px 0px #7CB442;
+  }
+  50% {
+    box-shadow: 1px 1px 5px 20px transparent;
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0px transparent;
+  }
+}

@@ -6,10 +6,11 @@ export const AuthContext = createContext(false);
 export default function AuthContextProvider({ children }){
 
     const [isLogIn, setIsLogIn] = useState(false);
+    const [userData, setUserData] = useState();
 
     useEffect(()=>{
         try {
-            jwtDecode(localStorage.getItem("token"));
+            setUserData(jwtDecode(localStorage.getItem("token")));
             setIsLogIn(true);
         } catch (error) {
             setIsLogIn(false);
@@ -27,7 +28,7 @@ export default function AuthContextProvider({ children }){
         })
     }, [])
 
-    return <AuthContext.Provider value={{isLogIn, setIsLogIn}}>
+    return <AuthContext.Provider value={{isLogIn, setIsLogIn, userData}}>
         {children}
     </AuthContext.Provider>
 }

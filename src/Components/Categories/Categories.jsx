@@ -1,9 +1,16 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
+import Bubbles from '../Bubbles/Bubbles'
 
 export default function Categories() {
   return (
-    <div>
+    <>
+      <Helmet>
+          <title>FreshCart - Categories</title>
+      </Helmet>
+
+      <Bubbles />
       
-    </div>
+    </>
   )
 }

@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { classNames } from '../../assets/Helpers/strings'
 import { Tab, } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
+import { toast } from 'react-toastify'
 import Loading from '../Loading/Loading'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
+import { cartContext } from '../../Context/CartContext'
+import { Helmet } from 'react-helmet'
+import Bubbles from '../Bubbles/Bubbles'
 
 export default function ProductDetails() {
 
     const [productDetails, setProductDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [isCartLoading, setIsCartLoading] = useState(false)
     const [relatedProducts, setRelatedProducts] = useState([])
-
     const { id, categoryId } = useParams()
+
+    const {setCartCount} = useContext(cartContext);
+
 
     async function getProductDetails(productId){
         setIsLoading(true);
@@ -27,6 +34,28 @@ export default function ProductDetails() {
       let { data } = await axios.get("https://ecommerce.routemisr.com/api/v1/products?category[in]=" + categoryId)
       setRelatedProducts(data.data);
   }
+
+  async function addToCart(){
+    setIsCartLoading(true);
+    let { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/cart", {productId: id}, {
+        headers: {
+            token: localStorage.getItem("token")
+        }
+    })
+    setIsCartLoading(false);
+    setCartCount(data.numOfCartItems);
+
+    toast.success(data.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        });
+}
 
     useEffect(() => {
       getProductDetails(id)
@@ -41,7 +70,14 @@ export default function ProductDetails() {
       return <Loading />
   } else {
       return (
-          <div className="bg-white">
+        <>
+            <Helmet>
+                <title>FreshCart - Detailed</title>
+            </Helmet>
+
+            <Bubbles />
+
+            <div className="bg-white">
 
               <main className="mx-auto max-w-7xl sm:px-6  lg:px-8">
                   <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -128,11 +164,14 @@ export default function ProductDetails() {
                               </div>
 
                               <div className="mt-10 flex">
-                                  <button
+                                  <button disabled={isCartLoading} onClick={addToCart}
                                       type="submit"
                                       className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                                   >
-                                      Add to bag
+                                    {isCartLoading
+                                        ? <i className='fas fa-spinner fa-spin'></i>
+                                        : 'Add to Cart'
+                                    }
                                   </button>
 
                                   <button
@@ -158,7 +197,8 @@ export default function ProductDetails() {
                   </div>
               </main>
 
-          </div>
+            </div>
+        </>
       )
   }
 }
