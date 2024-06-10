@@ -12,7 +12,6 @@
   box-shadow: 0px 0px 0px 0px #7CB442;
   animation: bubble 1s infinite linear;
 }
-
 .buy-now__link {
   color: #ffffff;
   position: relative;
@@ -22,11 +21,9 @@
   display: flex;
   flex-flow: row nowrap;
 }
-
 .buy-large__s {
   align-self: start;
 }
-
 .buy-large__num {
   font-size: 29px;
   font-weight: 700;
@@ -59,4 +56,4 @@
   100% {
     box-shadow: 0px 0px 0px 0px transparent;
   }
-}/*# sourceMappingURL=Sale.module.css.map */
+}

@@ -11,7 +11,7 @@ export default function CartProduct({product, removeCartItem, updateProductCount
       <div className='ms-3'>
         <h2 className='font-bold'>{product.product.title}</h2>
         <p className='text-lime-700'>{product.product.category.name}</p>
-        <p className=''>{product.price} $</p>
+        <p className=''>{product.price} EGP</p>
         <p className=''>{product.product.ratingsAverage} <i className='fa-regular fa-star text-yellow-400'></i></p>
       </div>
     </div>

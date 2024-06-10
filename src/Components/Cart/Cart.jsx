@@ -125,7 +125,7 @@ export default function Cart() {
             }
             <div className='flex justify-between mb-5'>
                 <Link to={"/cartaddress/" + cartData?.data._id} className='text-white bg-green-500 px-2 rounded-md py-1'>Checkout</Link>
-                <h3>Total Cart Price: {cartData?.data.totalCartPrice} $</h3>
+                <h3>Total Cart Price: {cartData?.data.totalCartPrice} EGP</h3>
             </div> 
           </>
           }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -93,9 +93,12 @@ export default function Register() {
                 </div>
                 <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-green-600 hover:underline dark:text-green-500">terms and conditions</a>.</label>
             </div>
-            <button disabled={isLoading} type="submit" className="text-white ms-auto block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-              {isLoading ? <i className='fa fa-spinner fa-spin mx-4'></i> : <span>Submit</span>}
-            </button>
+            <div className='flex'>
+              <h1 className='mt-1 font-bold'>Have an account? <Link className='text-blue-700' to={'/login'}>Login Now</Link></h1>
+              <button disabled={isLoading} type="submit" className="text-white ms-auto block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                {isLoading ? <i className='fa fa-spinner fa-spin mx-4'></i> : <span>Submit</span>}
+              </button>
+            </div>
         </form>
       </div>
     </>

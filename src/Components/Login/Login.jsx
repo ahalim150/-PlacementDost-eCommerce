@@ -74,7 +74,10 @@ export default function Login() {
             <p className='bg-red-400 text-white text-sm p-1 rounded-md my-1'>{errMsg}</p>
             </div>}
             <div className='flex'>
-              <h1>Don't have an account? <Link className='text-blue-700' to={'/register'}>Register Now</Link></h1>
+              <div className=''>
+              <h1 className='mt-2 font-bold'>Forgot Password? <Link className='text-blue-700' to={''}>Reset Now</Link></h1>
+              <h1 className='mt-1 font-bold'>Don't have an account? <Link className='text-blue-700' to={'/register'}>Register Now</Link></h1>
+              </div>
               <button disabled={isLoading} type="submit" className="mt-4 text-white ms-auto block bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
               {isLoading ? <i className='fa fa-spinner fa-spin mx-4'></i> : <span>Login</span>}
             </button>
