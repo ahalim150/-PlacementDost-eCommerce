@@ -43,7 +43,7 @@ export default function Products({ product }) {
                     <h6><i className='fas fa-star text-yellow-400'></i> {product.ratingsAverage}</h6>
                 </div>
             </Link>
-                <button disabled={isLoading} onClick={addToCart} className='mt-3 w-full text-center bg-cyan-500 rounded text-white p-2 hover:bg-cyan-700'>
+                <button disabled={isLoading} onClick={addToCart} className='mt-3 w-full text-center bg-[#0AAD0A] rounded text-white p-2 hover:bg-[#308330]'>
                     {isLoading
                     ? <i className='fas fa-spinner fa-spin'></i>
                     : 'Add to Cart'

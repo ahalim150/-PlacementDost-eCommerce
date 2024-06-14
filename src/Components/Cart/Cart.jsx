@@ -86,16 +86,14 @@ export default function Cart() {
   }
 
   async function updateProductCount(productId, productCount){
-    if(productCount < 1 ){
-        removeCartItem(productId);
-    }else{
+
       let { data } = await axios.put("https://ecommerce.routemisr.com/api/v1/cart/" + productId, { count: productCount},{
         headers: {
           token: localStorage.getItem('token')
         }
       })
       setCartData(data);
-    }
+      
   }
 
   useEffect(() => {

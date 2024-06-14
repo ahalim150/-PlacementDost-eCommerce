@@ -20,6 +20,8 @@ import CartContextProvider from './Context/CartContext'
 import CartAddress from './Components/CartAddress/CartAddress'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { Provider } from 'react-redux'
+import { store } from './Redux/store'
 
 
 function App() {
@@ -45,6 +47,7 @@ let queryClient = new QueryClient();
 
 return (
   <>
+  <Provider store={store} >
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <CartContextProvider>
@@ -54,6 +57,7 @@ return (
       </AuthContextProvider>
     <ReactQueryDevtools/>
     </QueryClientProvider>
+  </Provider>
   </>
 )
 }
