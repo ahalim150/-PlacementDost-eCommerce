@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../../Redux/categoriesSlice'
 import Loading from '../Loading/Loading'
 import { Link } from 'react-router-dom'
+import style from '../Categories/Categories.module.css'
 
 
 export default function Categories() {
@@ -26,17 +27,21 @@ export default function Categories() {
       <Bubbles />
 
       {
-      categories.length == 0 ? <Loading/> : <div className="grid grid-cols-3">
+      categories.length == 0 ? <Loading/> : <div className="grid grid-cols-4">
       {categories.map((category, index)=>{
           return <>
-            <div className="m-3 border shadow rounded-full bg-[#0AAD0A]">
             <Link to={"/Products/"+ category._id}>
-                <img src={category.image} alt="" className='w-full h-56 rounded-full'/>
-                <div className="flex justify-between">
-                    <h6 className='font-bold mx-auto text-white'>{category.name}</h6>
+              <div className={style.card}>
+                <div className={style["image-box"]}>
+                  <img src={category.image} />
                 </div>
+                <div className={style['content-box']}>
+                  <div className={style.content}>
+                    <h6>{category.name}</h6>
+                  </div>
+                </div>
+              </div>
             </Link>
-          </div>
           </>
       })}
       </div>
