@@ -10,7 +10,7 @@ export default function CategoriesSlider() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
+        slidesToShow: 4,
         slidesToScroll: 2,
       };
 
@@ -24,12 +24,12 @@ export default function CategoriesSlider() {
       }, [])
 
   return (
-     <div className="mt-8">
+     <div className="">
         <h2 className='my-4'>Shop Popular Categories</h2>
             <Slider {...settings}>
                 {categories.map((category) => (
-                    <div className='h-40'>
-                        <img src={category.image} className='w-full h-full object-cover' alt="" />
+                    <div className='h-52 border shadow-black px-1'>
+                        <img src={category.image} className='w-full h-full' alt="" />
                     </div>
                 ))}
             </Slider>

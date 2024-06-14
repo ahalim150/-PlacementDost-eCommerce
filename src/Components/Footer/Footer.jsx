@@ -26,7 +26,6 @@ export default function Footer() {
                 <h3>Company</h3>
                 <ul>
                   <li><Link href="#">About</Link></li>
-                  <li><Link href="#">Blog</Link></li>
                   <li><Link href="#">Contact Us</Link></li>
                 </ul>
               </div>
@@ -34,7 +33,6 @@ export default function Footer() {
                 <h3>GSAP</h3>
                 <ul>
                   <li><Link href="#">Pricing</Link></li>
-                  <li><Link href="#">Showcase</Link></li>
                   <li><Link href="#">Resources</Link></li>
                   <li><Link href="#">Community</Link></li>
                 </ul>

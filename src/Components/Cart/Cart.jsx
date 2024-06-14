@@ -5,7 +5,6 @@ import CartProduct from '../CartProduct/CartProduct';
 import { toast } from 'react-toastify'
 import { cartContext } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
-import CartAddress from '../CartAddress/CartAddress';
 import { Helmet } from 'react-helmet';
 import { Offline, Online } from 'react-detect-offline';
 import Bubbles from '../Bubbles/Bubbles';
