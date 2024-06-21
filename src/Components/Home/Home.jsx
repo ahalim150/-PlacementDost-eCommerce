@@ -32,7 +32,7 @@ export default function Home() {
       <CategoriesSlider />
 
       {
-      products.length == 0 ? <Loading/> : <div className="mt-5 grid grid-cols-6">
+      products.length == 0 ? <Loading/> : <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {products.map((product, index)=>{
           return <Product product={product} key={index} />
       })}

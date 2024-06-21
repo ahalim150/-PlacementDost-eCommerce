@@ -27,7 +27,7 @@ export default function Categories() {
       <Bubbles />
 
       {
-      categories.length == 0 ? <Loading/> : <div className="grid grid-cols-4">
+      categories.length == 0 ? <Loading/> : <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
       {categories.map((category, index)=>{
           return <>
             <Link to={"/Products/"+ category._id}>

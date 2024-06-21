@@ -30,7 +30,7 @@ export default function Products() {
 
         {/* <button onClick={refetch} className='text-white bg-green-500 px-2 rounded-md py-1'>Refresh</button> */}
         {
-        isLoading ? <Loading/> : <div className="grid grid-cols-6">
+        isLoading ? <Loading/> : <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {data?.data.data.map((product, index)=>{
             return <Product product={product} key={index} />
         })}
