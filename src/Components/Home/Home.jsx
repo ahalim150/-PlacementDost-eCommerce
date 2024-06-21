@@ -6,8 +6,6 @@ import Bubbles from '../Bubbles/Bubbles';
 import Loading from '../Loading/Loading';
 import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
 import { Helmet } from 'react-helmet';
-import Footer from '../Footer/Footer';
-
 
 export default function Home() {
 

@@ -24,6 +24,9 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store'
 import WishListContextProvider from './Context/WishListContext'
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
+import VerifyCode from './Components/VerifyCode/VerifyCode'
+import ResetPassword from './Components/ResetPassword/ResetPassword'
 
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
       path: '', element: <Layout/>, children:[
         {index: true, element: <ProtectedRoute> <Home /> </ProtectedRoute>},
         {path: 'login', element: <AuthProtectedRoute> <Login/> </AuthProtectedRoute>},
+        {path: 'forgotpassword', element: <AuthProtectedRoute> <ForgotPassword/> </AuthProtectedRoute>},
+        {path: 'verifycode', element: <AuthProtectedRoute> <VerifyCode/> </AuthProtectedRoute>},
+        {path: 'resetpassword', element: <AuthProtectedRoute> <ResetPassword/> </AuthProtectedRoute>},
         {path: 'register', element: <AuthProtectedRoute> <Register/> </AuthProtectedRoute>},
         {path: 'products', element: <ProtectedRoute> <Products/> </ProtectedRoute>},
         {path: 'categories', element: <ProtectedRoute> <Categories/> </ProtectedRoute>},

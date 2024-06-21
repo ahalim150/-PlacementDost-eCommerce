@@ -9,7 +9,11 @@
 .card .content-box {
   width: 100%;
   height: 100%;
-  transition: all 0.35s linear;
+  transition: all 0.25s linear;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -ms-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
 }
 .card .image-box img {
   width: 100%;

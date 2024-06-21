@@ -1,6 +1,5 @@
 footer {
   width: 100%;
-  background-color: #fffce1;
   padding: 3.5rem clamp(3rem, 6vw, 14rem);
 }
 footer .footer-wrapper {
@@ -24,7 +23,7 @@ footer .input-box {
   max-width: 100%;
   padding-block: 1rem;
   border-bottom: 1px solid black;
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 footer .input-box > input {
   flex-grow: 1;
@@ -41,7 +40,7 @@ footer .footer-nav > div > ul {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 footer .footer-nav > div > ul li {
   font-size: 1.125rem;
@@ -55,7 +54,7 @@ footer .footer-copyright {
   display: flex;
   flex-wrap: wrap;
   font-size: 0.875rem;
-  margin-top: 1rem;
+  margin-top: 5rem;
 }
 @media (max-width: 53rem) {
   footer .footer-subscribe {
@@ -74,4 +73,4 @@ li {
 a,
 button {
   cursor: pointer;
-}
+}/*# sourceMappingURL=Footer.module.css.map */

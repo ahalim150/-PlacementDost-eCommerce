@@ -24,7 +24,8 @@ export default function CategoriesSlider() {
       }, [])
 
   return (
-     <div className="">
+
+      <div className="">
         <h2 className='my-4'>Shop Popular Categories</h2>
             <Slider {...settings}>
                 {categories.map((category) => (
@@ -33,6 +34,6 @@ export default function CategoriesSlider() {
                     </div>
                 ))}
             </Slider>
-        </div>
+      </div>
   )
 }

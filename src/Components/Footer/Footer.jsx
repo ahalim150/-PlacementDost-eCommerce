@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <>
-      <footer>
+      <footer className='bg-gray-100'>
         <div class={style["footer-wrapper"]}>
           <div class={style["footer-section"]}>
             <div class={style["footer-subscribe"]}>
