@@ -8,7 +8,7 @@ import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
 import { Helmet } from 'react-helmet';
 
 export default function Home() {
-
+  
   const [products, setProducts] = useState([])
 
   async function getProducts(){

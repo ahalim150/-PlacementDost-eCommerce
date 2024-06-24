@@ -4,6 +4,7 @@ import Loading from '../Loading/Loading';
 import WishListProduct from '../WishListProduct/WishListProduct';
 import { toast } from 'react-toastify'
 import { wishListContext } from '../../Context/WishListContext';
+import { cartContext } from '../../Context/CartContext';
 import { Helmet } from 'react-helmet';
 import Bubbles from '../Bubbles/Bubbles';
 
@@ -11,6 +12,9 @@ export default function WishList() {
 
   const [wishListData, setWishListData] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
+
+  const {setCartCount} = useContext(cartContext);
 
   const {setWishListCount} = useContext(wishListContext);
 
@@ -59,6 +63,29 @@ export default function WishList() {
     setWishListCount(data.data.length);
   }
 
+  async function addToCart(productId){
+    setBtnLoading(true);
+    let { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/cart", {productId}, {
+        headers: {
+            token: localStorage.getItem("token")
+        }
+    })
+    setBtnLoading(false);
+    setCartCount(data.numOfCartItems);
+    // removeWishListItem(productId)
+
+    toast.success(data.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        });
+}
+
   useEffect(() => {
     getLoggedUserWishList();
   }, [])
@@ -76,7 +103,7 @@ export default function WishList() {
           { !isLoading && <>
             {
               wishListData?.map((product, index) => {
-                return <WishListProduct  key={index} product={product} removeWishListItem={removeWishListItem}/>
+                return <WishListProduct  key={index} product={product} removeWishListItem={removeWishListItem} addToCart={addToCart}/>
               })
             }
           </>
